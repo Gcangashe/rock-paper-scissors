@@ -9,16 +9,56 @@
 <body>
     <script>
         function getComputerChoice(){
-            console.log("My choice");
+            let choice = Math.floor(Math.random() * 100);
+            if(choice <= 33){
+                choice = "rock";
+            } else if(choice <= 66){
+                choice = "paper";
+            } else if(choice <= 99){
+                choice = "scissor";
+            }
+            return choice;
         }
+
+        let playerChoise = prompt("Enter Choise: Rock, Paper, or Scissor", "paper");
+        let playerSelection = playerChoise.toLowerCase();
+        let computerSelection = getComputerChoice();
+
+        let message;
+        let playerPoints = 0;
+        let computerPoints = 0;
 
         function playRound(playerSelection, computerSelection){
-            return "You Lose! Paper beats Rock";
+            
+            if(playerSelection === "rock" && computerSelection === "paper"){
+                message = "You Lose! Paper beats Rock";
+                computerPoints++;
+            } else if(playerSelection === "paper" && computerSelection === "rock"){
+                message = "You Win! Paper beats Rock";
+                playerPoints++;
+            } else if(playerSelection === "rock" && computerSelection === "scissor"){
+                message = "You Win! Rock beats Scissor";
+                playerPoints++;
+            } else if(playerSelection === "scissor" && computerSelection === "rock"){
+                message = "You Lose! Rock beats Scissor";
+                computerPoints++;
+            } else if(playerSelection === "paper" && computerSelection === "scissor"){
+                message = "You Lose! Scissor beats Paper";
+                computerPoints++;
+            } else if(playerSelection === "scissor" && computerSelection === "paper"){
+                message = "You Win! Scissor beats Paper";
+                playerPoints++;
+            } else {
+                message = "Draw!"
+                playerPoints++;
+                computerPoints++;
+            }
+
+            console.log(message + "\nYour Points: " + playerPoints +  "\nComputer Points: " + computerPoints);
         }
 
-        const playerSelection = "rock".toLowerCase;
-        const computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection));
+        playRound(playerSelection, computerSelection);
+
     </script>
 </body>
 </html>
